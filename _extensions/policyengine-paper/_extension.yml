@@ -10,6 +10,7 @@ contributes:
         - ../policyengine/theme-policyengine.yml
     pdf:
       pdf-engine: xelatex
+      latex-auto-install: false
       geometry:
         - margin=1.1in
       format-resources:

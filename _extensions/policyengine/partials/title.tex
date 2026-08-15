@@ -13,11 +13,11 @@
     \vspace{0.85em}
     $if(by-author)$
     {\sffamily\bfseries\normalsize
-      $for(by-author)$$it.name.literal$$sep$\enspace\textperiodcentered\enspace$endfor$\par}
+      $for(by-author)$$it.name.literal$$sep$\enspace\textperiodcentered\enspace{}$endfor$\par}
     $endif$
     $if(by-affiliation)$
     {\sffamily\small\color{policyenginemuted}
-      $for(by-affiliation)$$it.name$$sep$\enspace\textperiodcentered\enspace$endfor$\par}
+      $for(by-affiliation)$$it.name$$sep$\enspace\textperiodcentered\enspace{}$endfor$\par}
     $elseif(policyengine-theme.affiliation)$
     {\sffamily\small\color{policyenginemuted} $policyengine-theme.affiliation$\par}
     $endif$
