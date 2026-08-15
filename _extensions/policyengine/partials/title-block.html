@@ -1,0 +1,56 @@
+<style>
+  :root {
+    /* Source: policyengine-ui-kit/src/theme/tokens.css:31 (--primary). */
+    --color-primary: $policyengine-theme.accent-css$;
+    /* Source: policyengine-ui-kit/src/theme/tokens.css:66 (--chart-3). */
+    --color-primary-hover: $policyengine-theme.accent-hover-css$;
+  }
+</style>
+
+<header id="title-block-header" class="quarto-title-block policyengine-title-block">
+  <div class="policyengine-kicker">
+    <span class="policyengine-kicker-mark" aria-hidden="true">Σ</span>
+    <span>$if(kicker)$$kicker$$else$WORKING PAPER$endif$</span>
+  </div>
+
+  $if(title)$
+  <h1 class="title">$title$</h1>
+  $endif$
+
+  $if(by-author)$
+  <div class="policyengine-authors">
+    $for(by-author)$
+    <span class="author">$it.name.literal$</span>$sep$<span aria-hidden="true"> · </span>$endfor$
+  </div>
+  $endif$
+
+  <div class="policyengine-affiliations">
+  $if(by-affiliation)$
+    $for(by-affiliation)$<span class="affiliation">$it.name$</span>$sep$<span aria-hidden="true"> · </span>$endfor$
+  $elseif(policyengine-theme.affiliation)$
+    <span class="affiliation">$policyengine-theme.affiliation$</span>
+  $endif$
+  </div>
+
+  $if(revision)$
+  <div class="policyengine-revision">Revision $revision$$if(date-meta)$ <span aria-hidden="true">·</span> $date-meta$$endif$</div>
+  $elseif(date-meta)$
+  <div class="policyengine-revision">$date-meta$</div>
+  $elseif(date)$
+  <div class="policyengine-revision">$date$</div>
+  $endif$
+
+  $if(abstract)$
+  <div class="abstract">
+    <div class="block-title">$labels.abstract$</div>
+    $abstract$
+  </div>
+  $endif$
+
+  $if(status)$
+  <div class="policyengine-status" role="note" aria-label="Status">
+    <div class="policyengine-status-label">Status</div>
+    <div class="policyengine-status-body">$status$</div>
+  </div>
+  $endif$
+</header>

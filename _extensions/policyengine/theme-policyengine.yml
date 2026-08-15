@@ -1,0 +1,12 @@
+policyengine-theme:
+  name: policyengine
+  # Source: policyengine-ui-kit/src/theme/tokens.css:31 (--primary).
+  accent-css: "#2C7A7B"
+  # Source: policyengine-ui-kit/src/theme/tokens.css:31 (--primary).
+  accent-tex: "2C7A7B"
+  # Source: policyengine-ui-kit/src/theme/tokens.css:66 (--chart-3).
+  accent-hover-css: "#285E61"
+  # Source: policyengine-ui-kit/src/theme/tokens.css:66 (--chart-3).
+  accent-hover-tex: "285E61"
+  affiliation: PolicyEngine
+  wordmark: assets/policyengine-wordmark.svg

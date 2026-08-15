@@ -1,0 +1,14 @@
+/.quarto/
+/**/*_files/
+/**/*.aux
+/**/*.log
+/**/*.out
+/example/*.tex
+!/_extensions/**/*.tex
+/example/paper.html
+/example/paper.pdf
+/example/fonts/
+/output/
+/tmp/
+
+**/*.quarto_ipynb

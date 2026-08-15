@@ -1,0 +1,87 @@
+% PolicyEngine's vendored fonts are addressed by filename so no system font or
+% network lookup can affect the result. Font families follow
+% policyengine-ui-kit/src/theme/tokens.css:296-297.
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{xurl}
+
+\setmainfont[
+  Path={$policyengine-font-dir$/inter/},
+  UprightFont={Inter-Regular.ttf},
+  ItalicFont={Inter-Italic.ttf},
+  BoldFont={Inter-Bold.ttf},
+  BoldItalicFont={Inter-BoldItalic.ttf}
+]{Inter}
+
+\setsansfont[
+  Path={$policyengine-font-dir$/inter/},
+  UprightFont={Inter-Regular.ttf},
+  ItalicFont={Inter-Italic.ttf},
+  BoldFont={Inter-Bold.ttf},
+  BoldItalicFont={Inter-BoldItalic.ttf}
+]{Inter}
+
+\setmonofont[
+  Path={$policyengine-font-dir$/jetbrains-mono/},
+  UprightFont={JetBrainsMono-Regular.ttf},
+  ItalicFont={JetBrainsMono-Italic.ttf},
+  BoldFont={JetBrainsMono-Bold.ttf},
+  BoldItalicFont={JetBrainsMono-BoldItalic.ttf},
+  RawFeature={-calt},
+  Scale=MatchLowercase
+]{JetBrains Mono}
+
+\newfontfamily\policyenginesemibold[
+  Path={$policyengine-font-dir$/inter/},
+  UprightFont={Inter-SemiBold.ttf},
+  ItalicFont={Inter-SemiBoldItalic.ttf}
+]{Inter SemiBold}
+
+\newfontfamily\policyenginemono[
+  Path={$policyengine-font-dir$/jetbrains-mono/},
+  UprightFont={JetBrainsMono-Regular.ttf},
+  ItalicFont={JetBrainsMono-Italic.ttf},
+  BoldFont={JetBrainsMono-Bold.ttf},
+  BoldItalicFont={JetBrainsMono-BoldItalic.ttf},
+  RawFeature={-calt},
+  LetterSpace=14,
+  Scale=MatchLowercase
+]{JetBrains Mono}
+
+% #2C7A7B: policyengine-ui-kit/src/theme/tokens.css:31 (--primary).
+\definecolor{policyengineaccent}{HTML}{$policyengine-theme.accent-tex$}
+% #285E61: policyengine-ui-kit/src/theme/tokens.css:66 (--chart-3).
+\definecolor{policyengineaccenthover}{HTML}{$policyengine-theme.accent-hover-tex$}
+% #E2E8F0: policyengine-ui-kit/src/theme/tokens.css:51 (--border).
+\definecolor{policyenginerule}{HTML}{E2E8F0}
+% #475569: policyengine-ui-kit/src/theme/tokens.css:40 (--muted-foreground).
+\definecolor{policyenginemuted}{HTML}{475569}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=policyengineaccent,
+  citecolor=policyengineaccent,
+  urlcolor=policyengineaccent,
+  pdfborder={0 0 0}
+}
+
+\titleformat{\section}
+  {\policyenginesemibold\fontsize{15}{18}\selectfont}
+  {\thesection}{0.7em}{}
+\titleformat{\subsection}
+  {\policyenginesemibold\fontsize{12}{15}\selectfont}
+  {\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}
+  {\policyenginesemibold\normalsize}
+  {\thesubsubsection}{0.7em}{}
+
+\renewcommand{\footnotesize}{\fontsize{9}{11}\selectfont\sffamily}
+\newcommand{\policyenginebibliographyhref}[2]{%
+  \unskip\newline\policyengineoriginalhref{#1}{\nolinkurl{#2}}%
+}
+\AtBeginEnvironment{CSLReferences}{%
+  \urlstyle{same}%
+  \let\policyengineoriginalhref\href
+  \let\href\policyenginebibliographyhref
+}
+\AtEndEnvironment{CSLReferences}{\let\href\policyengineoriginalhref}

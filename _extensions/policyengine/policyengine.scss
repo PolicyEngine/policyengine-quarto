@@ -1,0 +1,183 @@
+/*-- scss:defaults --*/
+
+// Font sources: policyengine-ui-kit/src/theme/tokens.css:296-297.
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-monospace: "JetBrains Mono", "Fira Code", Consolas, monospace;
+$headings-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+// Source: policyengine-ui-kit/src/theme/tokens.css:28 (--foreground).
+$body-color: #000000;
+// Source: policyengine-ui-kit/src/theme/tokens.css:31 (--primary).
+$link-color: #2C7A7B;
+// Source: policyengine-ui-kit/src/theme/tokens.css:28 (--foreground).
+$code-color: #000000;
+$code-bg: transparent;
+$code-block-bg: transparent;
+// Source: policyengine-ui-kit/src/theme/tokens.css:51 (--border).
+$code-block-border-left: #E2E8F0;
+$border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+
+/*-- scss:rules --*/
+
+:root {
+  // Source: policyengine-ui-kit/src/theme/tokens.css:31 (--primary).
+  --color-primary: #2C7A7B;
+  // Source: policyengine-ui-kit/src/theme/tokens.css:66 (--chart-3).
+  --color-primary-hover: #285E61;
+  // Source: policyengine-ui-kit/src/theme/tokens.css:51 (--border).
+  --color-border: #E2E8F0;
+  // Source: policyengine-ui-kit/src/theme/tokens.css:40 (--muted-foreground).
+  --color-muted: #475569;
+  // Source: policyengine-ui-kit/src/theme/tokens.css:28 (--foreground).
+  --color-text: #000000;
+  // Font sources: policyengine-ui-kit/src/theme/tokens.css:296-297.
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+
+html,
+body {
+  // Source: policyengine-ui-kit/src/theme/tokens.css:27 (--background).
+  background: #FFFFFF;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  text-underline-offset: 0.14em;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary-hover);
+  text-decoration-color: currentColor;
+}
+
+.policyengine-title-block {
+  margin-block: 0 2.2rem;
+}
+
+.policyengine-kicker,
+.policyengine-revision,
+.policyengine-status-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.policyengine-kicker {
+  display: flex;
+  gap: 0.7em;
+  margin-bottom: 0.85rem;
+}
+
+.policyengine-kicker-mark {
+  color: var(--color-primary);
+}
+
+.policyengine-title-block .title {
+  max-width: 22ch;
+  margin: 0 0 0.9rem;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: clamp(2.35rem, 7vw, 4.15rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+
+.policyengine-authors {
+  font-weight: 700;
+}
+
+.policyengine-affiliations {
+  margin-top: 0.08rem;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+}
+
+.policyengine-revision {
+  margin-top: 0.45rem;
+  color: var(--color-muted);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.policyengine-title-block .abstract {
+  max-width: 70ch;
+  margin-top: 1.5rem;
+}
+
+.policyengine-title-block .block-title {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.policyengine-status {
+  max-width: 70ch;
+  margin-top: 1.3rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--color-primary);
+}
+
+.policyengine-status-label {
+  margin-bottom: 0.3rem;
+}
+
+.policyengine-status-body > :last-child {
+  margin-bottom: 0;
+}
+
+#quarto-document-content > section > h1,
+h1:not(.title) {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+}
+
+pre {
+  padding-left: 1rem;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: var(--color-border);
+  background: transparent;
+}
+
+.footnotes,
+.footnote-ref {
+  font-family: var(--font-sans);
+  font-size: 90%;
+}
+
+#TOC,
+#TOC a {
+  font-family: var(--font-sans);
+}
