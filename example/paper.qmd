@@ -1,0 +1,35 @@
+---
+title: "A verifiable paper"
+author:
+  - name: Ada Example
+    affiliations:
+      - name: PolicyEngine
+date: 2026-08-15
+date-format: iso
+kicker: working paper
+revision: "1"
+status: |
+  This draft demonstrates a status body with `code` and a
+  [local-font link](https://policyengine.org/).
+theme: policyengine
+abstract: |
+  A minimal paper that exercises the title, abstract, status, headings,
+  links, footnotes, and code treatments.
+format:
+  policyengine-paper-pdf: default
+  policyengine-paper-html: default
+---
+
+# A sentence-case section
+
+The paper body uses Inter and an [accent link](https://policyengine.org/).[^1]
+
+## A subsection
+
+Subsections use Inter Semibold.
+
+```text
+The code block uses JetBrains Mono without a background fill.
+```
+
+[^1]: Footnotes use Inter at the quieter register.
