@@ -8,6 +8,10 @@
 </style>
 
 <header id="title-block-header" class="quarto-title-block policyengine-title-block">
+  $if(wordmark)$
+  <img class="policyengine-wordmark" src="$policyengine-theme.wordmark-svg$" alt="$policyengine-theme.wordmark-alt$">
+  $endif$
+
   <div class="policyengine-kicker">
     <span class="policyengine-kicker-mark" aria-hidden="true">Σ</span>
     <span>$if(kicker)$$kicker$$else$WORKING PAPER$endif$</span>
@@ -24,13 +28,17 @@
   </div>
   $endif$
 
-  <div class="policyengine-affiliations">
   $if(by-affiliation)$
+  <div class="policyengine-affiliations">
     $for(by-affiliation)$<span class="affiliation">$it.name$</span>$sep$<span aria-hidden="true"> · </span>$endfor$
-  $elseif(policyengine-theme.affiliation)$
-    <span class="affiliation">$policyengine-theme.affiliation$</span>
-  $endif$
   </div>
+  $elseif(wordmark)$
+  $-- The wordmark already names the theme affiliation.
+  $elseif(policyengine-theme.affiliation)$
+  <div class="policyengine-affiliations">
+    <span class="affiliation">$policyengine-theme.affiliation$</span>
+  </div>
+  $endif$
 
   $if(revision)$
   <div class="policyengine-revision">Revision $revision$$if(date-meta)$ <span aria-hidden="true">·</span> $date-meta$$endif$</div>

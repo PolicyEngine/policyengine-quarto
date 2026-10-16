@@ -6,6 +6,8 @@ contributes:
   formats:
     common:
       number-sections: true
+      # The title block shows the theme wordmark; `wordmark: false` omits it.
+      wordmark: true
       metadata-files:
         - theme-policyengine.yml
     pdf:
@@ -15,6 +17,7 @@ contributes:
         - margin=1.1in
       format-resources:
         - fonts
+        - assets/policyengine-wordmark.pdf
       colorlinks: true
       # Source: policyengine-ui-kit/src/theme/tokens.css:51 (--border).
       code-block-border-left: "#E2E8F0"
@@ -32,5 +35,7 @@ contributes:
         - default
         - policyengine.scss
       css: fonts.css
+      format-resources:
+        - assets/policyengine-wordmark.svg
       template-partials:
         - partials/title-block.html

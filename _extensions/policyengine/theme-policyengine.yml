@@ -9,4 +9,10 @@ policyengine-theme:
   # Source: policyengine-ui-kit/src/theme/tokens.css:66 (--chart-3).
   accent-hover-tex: "285E61"
   affiliation: PolicyEngine
-  wordmark: assets/policyengine-wordmark.svg
+  # Quarto copies format-resources beside the document by basename, so the
+  # partials name the copies, not the assets/ paths.
+  # Source: policyengine-ui-kit/src/assets/logos/policyengine/teal.svg.
+  wordmark-svg: policyengine-wordmark.svg
+  # Built from the SVG by scripts/build-wordmark-pdf.sh.
+  wordmark-pdf: policyengine-wordmark.pdf
+  wordmark-alt: PolicyEngine

@@ -5,6 +5,9 @@
 \usepackage{titlesec}
 \usepackage{etoolbox}
 \usepackage{xurl}
+% Quarto's template loads graphicx only under its `graphics` variable; the
+% title block's wordmark needs it regardless.
+\usepackage{graphicx}
 
 \setmainfont[
   Path={$policyengine-font-dir$/inter/},
