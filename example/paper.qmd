@@ -6,6 +6,8 @@ author:
       - name: PolicyEngine
 date: 2026-08-15
 date-format: iso
+# The wordmark heads the title block by default; false omits it.
+wordmark: true
 kicker: working paper
 revision: "1"
 status: |
@@ -13,8 +15,8 @@ status: |
   [local-font link](https://policyengine.org/).
 theme: policyengine
 abstract: |
-  A minimal paper that exercises the title, abstract, status, headings,
-  links, footnotes, and code treatments.
+  A minimal paper that exercises the wordmark, title, abstract, status,
+  headings, links, footnotes, and code treatments.
 format:
   policyengine-paper-pdf: default
   policyengine-paper-html: default

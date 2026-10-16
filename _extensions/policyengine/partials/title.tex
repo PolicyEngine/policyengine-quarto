@@ -3,6 +3,10 @@
   \begingroup
   \setlength{\parindent}{0pt}%
   \begin{flushleft}
+    $if(wordmark)$
+    \includegraphics[height=0.3in,alt={$policyengine-theme.wordmark-alt$}]{$policyengine-theme.wordmark-pdf$}\par
+    \vspace{1.6em}
+    $endif$
     {\policyenginemono\fontsize{7}{9}\selectfont
       {\color{policyengineaccent}Σ}\hspace{0.7em}%
       \MakeUppercase{$if(kicker)$$kicker$$else$WORKING PAPER$endif$}\par}
@@ -18,6 +22,8 @@
     $if(by-affiliation)$
     {\sffamily\small\color{policyenginemuted}
       $for(by-affiliation)$$it.name$$sep$\enspace\textperiodcentered\enspace{}$endfor$\par}
+    $elseif(wordmark)$
+    $-- The wordmark already names the theme affiliation.
     $elseif(policyengine-theme.affiliation)$
     {\sffamily\small\color{policyenginemuted} $policyengine-theme.affiliation$\par}
     $endif$
