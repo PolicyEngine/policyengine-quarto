@@ -29,22 +29,34 @@ while IFS= read -r svg; do
   check "$svg parses as XML" xmllint --noout "$root/$svg"
 done < <(git -C "$root" ls-files '*.svg')
 
-# The committed PDF must still depict the SVG. Rasterize both at the SVG's
-# size and count pixels that differ by more than 10%: the two renderers
-# disagree on about 0.06% (antialiasing), a blank or mirrored wordmark on
-# 10-18%, so 0.5% separates drift from noise.
+# The committed PDF must still be the conversion of the SVG. Rebuild it and
+# rasterize both PDFs with the same pdftoppm, so antialiasing matches and any
+# difference is content. A fresh conversion with the same librsvg matches to
+# the pixel; recolouring the wordmark (#2C7A7B to #319795), dropping a letter
+# or changing the bands' fill-opacity moves 0.5-1.5% of pixels at 2% fuzz, so
+# the bar is 0.1%. Each step fails closed: this runs under `if`, where
+# `set -e` is off.
 pdf_matches_svg() {
+  local shipped="$assets/policyengine-wordmark.pdf" shipped_size fresh_size
   local width height differing
-  rsvg-convert --background-color=white --output="$work/svg.png" \
+  rsvg-convert --format=pdf --output="$work/fresh.pdf" \
     "$assets/policyengine-wordmark.svg" || return 1
-  read -r width height < <(identify -format '%w %h\n' "$work/svg.png") || return 1
-  pdftoppm -singlefile -png -scale-to-x "$width" -scale-to-y "$height" \
-    "$assets/policyengine-wordmark.pdf" "$work/pdf" || return 1
-  differing="$({ compare -metric AE -fuzz 10% "$work/svg.png" "$work/pdf.png" null: 2>&1 || true; } | awk '{print $1}')"
-  printf '# %s of %d pixels differ\n' "$differing" "$((width * height))"
-  awk -v d="$differing" -v n="$((width * height))" 'BEGIN { exit !(d != "" && d / n < 0.005) }'
+  shipped_size="$(pdfinfo "$shipped" | sed -n 's/^Page size: *//p')"
+  fresh_size="$(pdfinfo "$work/fresh.pdf" | sed -n 's/^Page size: *//p')"
+  if [[ -z "$shipped_size" || "$shipped_size" != "$fresh_size" ]]; then
+    printf '# page size: shipped %s, rebuilt %s\n' \
+      "${shipped_size:-unknown}" "${fresh_size:-unknown}"
+    return 1
+  fi
+  pdftoppm -singlefile -png -r 96 "$shipped" "$work/shipped" || return 1
+  pdftoppm -singlefile -png -r 96 "$work/fresh.pdf" "$work/fresh" || return 1
+  read -r width height < <(identify -format '%w %h\n' "$work/shipped.png") || return 1
+  differing="$({ compare -metric AE -fuzz 2% "$work/shipped.png" "$work/fresh.png" null: 2>&1 || true; } | awk '{print $1}')"
+  printf '# %s of %s pixels differ from a fresh conversion\n' "$differing" "$((width * height))"
+  awk -v d="$differing" -v n="$((width * height))" \
+    'BEGIN { exit !(d ~ /^[0-9][0-9.]*(e[+-]?[0-9]+)?$/ && n > 0 && d / n < 0.001) }'
 }
-check "policyengine-wordmark.pdf matches the SVG" pdf_matches_svg
+check "policyengine-wordmark.pdf matches a fresh conversion of the SVG" pdf_matches_svg
 
 project="$work/project"
 mkdir -p "$project"
